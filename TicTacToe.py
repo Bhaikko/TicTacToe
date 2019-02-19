@@ -1,16 +1,17 @@
 def PrintBoard(Board):
+    Board[0]='1'
     print("     |     |   ")
     print("   "+Board[7]+" |  "+Board[8]+"  |  "+Board[9]+" ")
-    print("     |     |   ")
+    print("7    |8    |9  ")
     print("----------------")
     print("     |     |   ")
     print("   "+Board[4]+" |  "+Board[5]+"  |  "+Board[6]+" ")
-    print("     |     |   ")
+    print("4    |5    |6  ")
     print("----------------")
     print("     |     |   ")
     print("   "+Board[1]+" |  "+Board[2]+"  |  "+Board[3]+" ")
-    print("     |     |   ")
-    print("\n\n\n")
+    print("1    |2    |3  ")
+    print("\n")
 
 def SpaceCheck(Board,Position):
     return Board[Position]==" "
@@ -25,10 +26,11 @@ def PlayerInput(Marker):
             break
         else:
             print("Enter Valid Position ")
-            Position=int(input("Enter Position To Place Your Marker: "))
+      
 
 def WinCheck(Board,Marker):
-    if Board[1]==Marker and Board[2]==Marker and Marker[3]:
+    PrintBoard(Board)
+    if Board[1]==Marker and Board[2]==Marker and Marker[3]==Marker:
         return True 
     elif Board[4]==Marker and Board[5]==Marker and Board[6]==Marker:
         return True 
@@ -47,23 +49,60 @@ def WinCheck(Board,Marker):
     else:
         return False
 
+def DrawCheck(Board):
+    for Index in Board:
+        if Index==" ":
+            return False 
+
+    return True
+
+def PlayAgain():
+    print("Do You Want to Play Again???")
+    Choice=str(input("Enter Choice: ")).lower()
+    
+    if Choice=="yes" or Choice=="y":
+        return True 
+    else:
+        return False    
+
 Board=[" "]*10
 
 while True:
-    
+    print("\n"*100)
     print("Welcome To Tic Tac Toe")
+    print("\n\n")
+    PrintBoard(Board)
 
     while True:
-        PrintBoard(Board)
-        print("Player 1 Turn")
-        PlayerInput("O")
-        WinCheck(Board,"O")
-
-        PrintBoard(Board)
-        print("Player 2 Turn")
-        PlayerInput("X")
-        WinCheck(Board,"X")
-
         
+        print("Player 1 Turn - 'O'")
+        PlayerInput("O")
+        if WinCheck(Board,"O"):
+            print("####################")
+            print("Player 1 Win!!!, GG")
+            print("####################")           
+            break
+  
+        if DrawCheck(Board):
+            print("####################")
+            print("DRAW!!!")
+            print("####################")
+            break 
+
+        print("Player 2 Turn - 'X'")
+        PlayerInput("X")
+        if WinCheck(Board,"X"):
+            print("####################")
+            print("Player 2 Win!!!, GG")
+            print("####################")
+            break
+
+       
+       
+    if PlayAgain():
+        Board=[" "]*10
+        continue
+    else:
+        break
 
 
