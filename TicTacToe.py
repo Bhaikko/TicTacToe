@@ -11,7 +11,7 @@ class TicTacToe:
         print("\n\n")
 
         self.Board[0]='1'
-        self.PrintBoard()
+        
 
     def PrintBoard(self):
     
