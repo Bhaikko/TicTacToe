@@ -1,108 +1,70 @@
-def PrintBoard(Board):
-    Board[0]='1'
-    print("     |     |   ")
-    print("   "+Board[7]+" |  "+Board[8]+"  |  "+Board[9]+" ")
-    print("7    |8    |9  ")
-    print("----------------")
-    print("     |     |   ")
-    print("   "+Board[4]+" |  "+Board[5]+"  |  "+Board[6]+" ")
-    print("4    |5    |6  ")
-    print("----------------")
-    print("     |     |   ")
-    print("   "+Board[1]+" |  "+Board[2]+"  |  "+Board[3]+" ")
-    print("1    |2    |3  ")
-    print("\n")
+#! /usr/bin/python
 
-def SpaceCheck(Board,Position):
-    return Board[Position]==" "
+class TicTacToe:
 
-def PlayerInput(Marker):
-   
-    while True:
-        Position=int(input("Enter Position To Place Your Marker: "))
+    Board=list()
 
-        if SpaceCheck(Board,Position):
-            Board[Position]=Marker
-            break
-        else:
-            print("Enter Valid Position ")
-      
+    def __init__(self):
+        self.Board=[" "]*10
+        print("\n"*100)
+        print("Welcome To Tic Tac Toe")
+        print("\n\n")
 
-def WinCheck(Board,Marker):
-    PrintBoard(Board)
-    if Board[1]==Marker and Board[2]==Marker and Marker[3]==Marker:
-        return True 
-    elif Board[4]==Marker and Board[5]==Marker and Board[6]==Marker:
-        return True 
-    elif Board[7]==Marker and Board[8]==Marker and Board[9]==Marker:
-        return True 
-    elif Board[1]==Marker and Board[5]==Marker and Board[9]==Marker:
-            return True 
-    elif Board[3]==Marker and Board[5]==Marker and Board[7]==Marker:
-            return True 
-    elif Board[1]==Marker and Board[4]==Marker and Board[7]==Marker:
-        return True 
-    elif Board[2]==Marker and Board[5]==Marker and Board[8]==Marker:
-        return True 
-    elif Board[3]==Marker and Board[6]==Marker and Board[9]==Marker:
-        return True 
-    else:
-        return False
+        self.Board[0]='1'
+        self.PrintBoard()
 
-def DrawCheck(Board):
-    for Index in Board:
-        if Index==" ":
-            return False 
-
-    return True
-
-def PlayAgain():
-    print("Do You Want to Play Again???")
-    Choice=str(input("Enter Choice: ")).lower()
+    def PrintBoard(self):
     
-    if Choice=="yes" or Choice=="y":
-        return True 
-    else:
-        return False    
-
-Board=[" "]*10
-
-while True:
-    print("\n"*100)
-    print("Welcome To Tic Tac Toe")
-    print("\n\n")
-    PrintBoard(Board)
-
-    while True:
-        
-        print("Player 1 Turn - 'O'")
-        PlayerInput("O")
-        if WinCheck(Board,"O"):
-            print("####################")
-            print("Player 1 Win!!!, GG")
-            print("####################")           
-            break
-  
-        if DrawCheck(Board):
-            print("####################")
-            print("DRAW!!!")
-            print("####################")
-            break 
-
-        print("Player 2 Turn - 'X'")
-        PlayerInput("X")
-        if WinCheck(Board,"X"):
-            print("####################")
-            print("Player 2 Win!!!, GG")
-            print("####################")
-            break
-
-       
-       
-    if PlayAgain():
-        Board=[" "]*10
-        continue
-    else:
-        break
+        print("     |     |   ")
+        print("   "+self.Board[7]+" |  "+self.Board[8]+"  |  "+self.Board[9]+" ")
+        print("7    |8    |9  ")
+        print("----------------")
+        print("     |     |   ")
+        print("   "+self.Board[4]+" |  "+self.Board[5]+"  |  "+self.Board[6]+" ")
+        print("4    |5    |6  ")
+        print("----------------")
+        print("     |     |   ")
+        print("   "+self.Board[1]+" |  "+self.Board[2]+"  |  "+self.Board[3]+" ")
+        print("1    |2    |3  ")
+        print("\n")
 
 
+    def WinCheck(self,Marker):
+        self.PrintBoard()
+        if self.Board[1]==Marker and self.Board[2]==Marker and self.Board[3]==Marker:
+            return True 
+        elif self.Board[4]==Marker and self.Board[5]==Marker and self.Board[6]==Marker:
+            return True 
+        elif self.Board[7]==Marker and self.Board[8]==Marker and self.Board[9]==Marker:
+            return True 
+        elif self.Board[1]==Marker and self.Board[5]==Marker and self.Board[9]==Marker:
+                return True 
+        elif self.Board[3]==Marker and self.Board[5]==Marker and self.Board[7]==Marker:
+                return True 
+        elif self.Board[1]==Marker and self.Board[4]==Marker and self.Board[7]==Marker:
+            return True 
+        elif self.Board[2]==Marker and self.Board[5]==Marker and self.Board[8]==Marker:
+            return True 
+        elif self.Board[3]==Marker and self.Board[6]==Marker and self.Board[9]==Marker:
+            return True 
+        else:
+            return False
+
+
+    def PlayerInput(self, Marker):
+        while True:
+            Position=int(input("Enter Position To Place Your Marker: "))
+
+            if self.Board[Position]==" ":
+                self.Board[Position]=Marker
+                break
+            else:
+                print("Enter Valid Position ")
+      
+    def DrawCheck(self):
+        for Index in self.Board:
+            if Index==" ":
+                return False 
+
+        return True
+    
