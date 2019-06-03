@@ -2,9 +2,6 @@ import pygame
 
 pygame.init()
 
-win=pygame.display.set_mode((800,600))
-
-
 class button():
     def __init__(self, color, x,y,width,height, text=''):
         self.color = color
@@ -13,6 +10,7 @@ class button():
         self.width = width
         self.height = height
         self.text = text
+        self.bEmpty=True 
 
     def draw(self,win,outline=None):
         #Call this method to draw the button on the screen
@@ -22,7 +20,7 @@ class button():
         pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
         
         if self.text != '':
-            font = pygame.font.SysFont('comicsans', 25)
+            font = pygame.font.SysFont('comicsans', 60)
             text = font.render(self.text, 1, (0,0,0))
             win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
@@ -36,3 +34,6 @@ class button():
 
     def AssignMarker(self,Marker):
         self.text=Marker
+
+    
+    

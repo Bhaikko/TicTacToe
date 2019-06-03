@@ -1,13 +1,30 @@
 #! /usr/bin/python
 
 import TicTacToe 
-import Button 
-
-
 
 Game=TicTacToe.TicTacToe()
+bGameOver=False
 
-Game.DisplayButtons()
+while True:
+    
+    while True:
+        bOutcome=Game.DisplayButtons()
+        if bOutcome == "O":
+            print("Player 1 Won,GG")
+            bGameOver=True
+            break
+        elif bOutcome == "X":
+            print("Player 2 Won,GG")
+            bGameOver=True
+            break 
+        elif bOutcome == "Draw":
+            print("Draw,GG")
+            bGameOver=True
+            break
+    if bGameOver==True:
+        break    
+    
+   
 
 
 '''
@@ -19,33 +36,6 @@ def PlayAgain():
         return True 
     else:
         return False    
-
-
-
-while True:
-       
-    while True:
-        print("Player 1 Turn - 'O'")
-        Game.PlayerInput("O")
-        if Game.WinCheck("O"):
-            print("####################")
-            print("Player 1 Win!!!, GG")
-            print("####################")           
-            break
-    
-        if Game.DrawCheck():
-            print("####################")
-            print("DRAW!!!")
-            print("####################")
-            break 
-
-        print("Player 2 Turn - 'X'")
-        Game.PlayerInput("X")
-        if Game.WinCheck("X"):
-            print("####################")
-            print("Player 2 Win!!!, GG")
-            print("####################")
-            break
 
         
         
