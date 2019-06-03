@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 
 win=pygame.display.set_mode((800,600))
-win.fill((0,0,0))
+
 
 class button():
     def __init__(self, color, x,y,width,height, text=''):
@@ -22,7 +22,7 @@ class button():
         pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
         
         if self.text != '':
-            font = pygame.font.SysFont('comicsans', 60)
+            font = pygame.font.SysFont('comicsans', 25)
             text = font.render(self.text, 1, (0,0,0))
             win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
@@ -34,35 +34,5 @@ class button():
             
         return False
 
-
-
-
-
-def RedrawWindow():
-    win.fill((255,255,255))
-    button.draw(win,(0,0,0))
-
-
-button=button((0,255,0),150,255,250,100,"Click ME")
-
-while True:
-    RedrawWindow()
-    pygame.display.update()
-    
-    for event in pygame.event.get():
-        pos=pygame.mouse.get_pos()
-
-        if event.type==pygame.QUIT:
-            pygame.quit()
-            quit()
-
-        if event.type==pygame.MOUSEBUTTONDOWN:
-            if button.isOver(pos):
-                print("Clicked")
-
-        if event.type==pygame.MOUSEMOTION:
-            if button.isOver(pos):
-                button.color=(255,0,0)
-            else:
-                button.color=(0,255,0)
-
+    def AssignMarker(self,Marker):
+        self.text=Marker

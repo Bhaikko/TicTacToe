@@ -7,6 +7,8 @@ import Button
 
 Game=TicTacToe.TicTacToe()
 
+Game.DisplayButtons()
+
 
 '''
 def PlayAgain():

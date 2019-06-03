@@ -1,17 +1,68 @@
 #! /usr/bin/python
+import Button 
+import pygame 
+
+ResolutionX=800
+ResolutionY=600
+
+Height=100
+Width=100
+Offset=200
+
 
 class TicTacToe:
 
     Board=list()
+    Buttons=list()
 
     def __init__(self):
         self.Board=[" "]*10
-        print("\n"*100)
-        print("Welcome To Tic Tac Toe")
-        print("\n\n")
-
-        self.Board[0]='1'
+        self.Buttons=[" "]*10
         
+        self.win=pygame.display.set_mode((ResolutionX,ResolutionY))     
+        self.InitialiseButtons()
+        self.Board[0]='1'
+
+    def RedrawWindow(self):
+        self.win.fill((255,255,255))
+
+    def InitialiseButtons(self):   
+        #                  1                  2                   3                 4                   5                   6                 7                 8                  9                              
+        Positions=[(0*Width,0*Height),(0*Width,1*Height),(0*Width,2*Height),(1*Width,0*Height),(1*Width,1*Height),(1*Width,2*Height),(2*Width,0*Height),(2*Width,1*Height),(2*Width,2*Height)]
+        for Index in range(0,9):
+            self.Buttons[Index]=Button.button((0,255,0),Positions[Index][0]+Offset,Positions[Index][1]+Offset,Width,Height,"Click ME")
+    
+            
+
+
+    def DisplayButtons(self):
+        #for Index in range(0,9):
+            while True:
+                self.RedrawWindow()
+                for Index in range(0,9):
+                    self.Buttons[Index].draw(self.win,(0,0,0))
+                
+                pygame.display.update()
+                
+                for event in pygame.event.get():
+                    pos=pygame.mouse.get_pos()
+
+                    for Index in range(0,9):
+                        if event.type==pygame.QUIT:
+                            pygame.quit()
+                            quit()
+                        
+                        if event.type==pygame.MOUSEBUTTONDOWN:
+                            if self.Buttons[Index].isOver(pos):
+                                print("Clicked")
+
+                        if event.type==pygame.MOUSEMOTION:
+                            if self.Buttons[Index].isOver(pos):
+                                self.Buttons[Index].color=(255,0,0)
+                            else:
+                                self.Buttons[Index].color=(0,255,0)
+                
+
 
     def PrintBoard(self):
     
