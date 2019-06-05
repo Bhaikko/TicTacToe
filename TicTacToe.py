@@ -1,6 +1,7 @@
 #! /usr/bin/python
 import Button 
-import pygame 
+import pygame
+import time 
 
 
 ResolutionX=800
@@ -22,6 +23,7 @@ class TicTacToe:
         self.Exit=Button.button((0,255,0),250,350,200,75,"Exit")
         self.win=pygame.display.set_mode((ResolutionX,ResolutionY))  
         self.menu=pygame.display.set_mode((ResolutionX, ResolutionY))   
+        self.End=pygame.display.set_mode((ResolutionX, ResolutionY))
         self.InitialiseButtons()
 
     def InitialiseButtons(self):   
@@ -32,7 +34,7 @@ class TicTacToe:
             self.Buttons[Index]=Button.button((0,255,0),Positions[Index][0]+Offset,Positions[Index][1]+Offset,Width,Height," ")
     
     def Menu(self):
-        self.win.fill((255,255,255))
+        self.menu.fill((255,255,255))
 
         while True:
             
@@ -40,7 +42,7 @@ class TicTacToe:
             self.Exit.draw(self.menu,(0,0,0))
                 
             pygame.display.update()
-            self.ShowText("Welcome To TicTacToe",True,(100,100))
+            self.ShowText("Welcome To TicTacToe",True,(100,100),self.menu)
             
             for event in pygame.event.get():
                 pos=pygame.mouse.get_pos()
@@ -81,7 +83,7 @@ class TicTacToe:
                 
             pygame.display.update()
             
-            self.ShowText(Turn+1,False,(ResolutionX/4,ResolutionY/5))
+            self.ShowText(Turn+1,False,(ResolutionX/4,ResolutionY/5),self.win)
             
             for event in pygame.event.get():
                 pos=pygame.mouse.get_pos()
@@ -124,7 +126,23 @@ class TicTacToe:
                             self.Buttons[Index].color=(255,0,0)
                         else:
                             self.Buttons[Index].color=(0,255,0)
-                                        
+
+    def WinScreen(self,Text):
+        self.End.fill((255,255,255))
+
+        while True:       
+                     
+            
+            if Text==1:
+                self.ShowText("Player 1 Won, GG",True,(ResolutionX/4,ResolutionY/2),self.End)
+            elif Text==2:
+                self.ShowText("Player 2 Won, GG",True,(ResolutionX/4,ResolutionY/2),self.End)
+            else:
+                self.ShowText("Draw, GG Noobs",True,(ResolutionX/4,ResolutionY/2),self.End)
+            pygame.display.update()
+            time.sleep(3)
+            break
+                        
     def WinCheck(self,Marker):
         
         if self.Buttons[0].text==Marker and self.Buttons[1].text==Marker and self.Buttons[2].text==Marker:
@@ -153,12 +171,13 @@ class TicTacToe:
 
         return True
 
-    def ShowText(self,Text,Menu,Coordinates):
+    def ShowText(self,Text,Menu,Coordinates,Screen):
         font = pygame.font.SysFont('comicsans', 70)
         if Menu==False:
             text = font.render("Player " + str(Text) + " Turn", True, (0,0,0))  
         else:
             text = font.render(str(Text), True, (0,0,0))
-        self.win.fill((255,255,255))      
-        self.win.blit(text, Coordinates)
+
+        Screen.fill((255,255,255))      
+        Screen.blit(text, Coordinates)
         

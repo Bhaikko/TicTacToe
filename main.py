@@ -12,18 +12,15 @@ while True:
     while True:        
         bOutcome=TicTacToeGame.Menu()
         if bOutcome == "O":
-            print("Player 1 Won,GG")
-            TicTacToeGame.ShowText("Player 1 Won, GG",True,(400,300))
+            TicTacToeGame.WinScreen(1)
             bGameOver=True
             break
         elif bOutcome == "X":
-            print("Player 2 Won,GG")
-            TicTacToeGame.ShowText("Player 2 Won, GG",True,(400,300))
+            TicTacToeGame.WinScreen(2)
             bGameOver=True
             break 
         elif bOutcome == "Draw":
-            print("Draw,GG")
-            TicTacToeGame.ShowText("Draw, GG",True,(400,300))
+            TicTacToeGame.WinScreen(3)
             bGameOver=True
             break
         
