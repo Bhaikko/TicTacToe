@@ -1,49 +1,37 @@
 #! /usr/bin/python
 
 import TicTacToe 
+import time
 
-Game=TicTacToe.TicTacToe()
+
+TicTacToeGame=TicTacToe.TicTacToe()
 bGameOver=False
 
 while True:
     
-    while True:
-        bOutcome=Game.DisplayButtons()
+    while True:        
+        bOutcome=TicTacToeGame.Menu()
         if bOutcome == "O":
             print("Player 1 Won,GG")
+            TicTacToeGame.ShowText("Player 1 Won, GG",True,(400,300))
             bGameOver=True
             break
         elif bOutcome == "X":
             print("Player 2 Won,GG")
+            TicTacToeGame.ShowText("Player 2 Won, GG",True,(400,300))
             bGameOver=True
             break 
         elif bOutcome == "Draw":
             print("Draw,GG")
+            TicTacToeGame.ShowText("Draw, GG",True,(400,300))
             bGameOver=True
             break
-    if bGameOver==True:
-        break    
+        
+    if bGameOver==True:   
+        del TicTacToeGame
+        TicTacToeGame=TicTacToe.TicTacToe()    
+        time.sleep(2)
+           
     
    
 
-
-'''
-def PlayAgain():
-    print("Do You Want to Play Again???")
-    Choice=str(raw_input("Enter Choice: "))
-    
-    if Choice=='Y' or Choice=="Yes" or Choice=='y' or Choice=="yes":
-        return True 
-    else:
-        return False    
-
-        
-        
-    if PlayAgain():
-        del Game
-        Game=TicTacToe.TicTacToe()
-        continue
-    else:
-        print("Thanks For Playing :D")
-        break
-'''
