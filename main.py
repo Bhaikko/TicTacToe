@@ -27,7 +27,7 @@ while True:
     if bGameOver==True:   
         del TicTacToeGame
         TicTacToeGame=TicTacToe.TicTacToe()    
-        time.sleep(2)
+        time.sleep(1)
            
     
    

@@ -11,6 +11,16 @@ Height=100
 Width=100
 Offset=200
 
+#Dark Mode Colors
+Background=(80,80,80)
+ButtonClicked=(125,30,30)
+ButtonDefault=(30,125,30)
+
+#Light Mode Colors
+#Background=(255,255,255)
+#ButtonClicked=(255,0,0)
+#ButtonDefault=(0,255,0)
+
 
 class TicTacToe:
 
@@ -34,7 +44,7 @@ class TicTacToe:
             self.Buttons[Index]=Button.button((0,255,0),Positions[Index][0]+Offset,Positions[Index][1]+Offset,Width,Height," ")
     
     def Menu(self):
-        self.menu.fill((255,255,255))
+        self.menu.fill(Background)
 
         while True:
             
@@ -62,19 +72,19 @@ class TicTacToe:
                                     
                 if event.type==pygame.MOUSEMOTION:
                     if self.Start.isOver(pos):
-                        self.Start.color=(255,0,0)
+                        self.Start.color=(ButtonClicked)
                     else:
-                        self.Start.color=(0,255,0)
+                        self.Start.color=(ButtonDefault)
 
                     if self.Exit.isOver(pos):
-                        self.Exit.color=(255,0,0)
+                        self.Exit.color=(ButtonClicked)
                     else:
-                        self.Exit.color=(0,255,0)
+                        self.Exit.color=(ButtonDefault)
             
     def Game(self):
         Turn=0
         bWon=False 
-        self.win.fill((255,255,255))
+        self.win.fill(Background)
 
         while True:
             
@@ -102,16 +112,28 @@ class TicTacToe:
                             if Turn==0:
                                 self.Buttons[Index].AssignMarker("O")
                                 bWon=self.WinCheck("O")
-                                if bWon==True:                                                                       
+                                if bWon==True:   
+                                    for Index in range(0,9):
+                                        self.Buttons[Index].draw(self.win,(0,0,0))
+                                    pygame.display.update()
+                                    time.sleep(2)                                                           
                                     return "O"                            
                             elif Turn==1:
                                 self.Buttons[Index].AssignMarker("X")
                                 bWon=self.WinCheck("X")
-                                if bWon==True:                                             
+                                if bWon==True:  
+                                    for Index in range(0,9):
+                                        self.Buttons[Index].draw(self.win,(0,0,0))
+                                    pygame.display.update()    
+                                    time.sleep(2)                                      
                                     return "X"
                             Turn=(Turn+1)%2 
                                       
-                            if self.DrawCheck()==True:                                                               
+                            if self.DrawCheck()==True: 
+                                for Index in range(0,9):
+                                        self.Buttons[Index].draw(self.win,(0,0,0))
+                                pygame.display.update()    
+                                time.sleep(2)                                                               
                                 return "Draw"
 
                             self.Buttons[Index].bEmpty=False
@@ -123,12 +145,12 @@ class TicTacToe:
                          
                     if event.type==pygame.MOUSEMOTION:
                         if self.Buttons[Index].isOver(pos):
-                            self.Buttons[Index].color=(255,0,0)
+                            self.Buttons[Index].color=(ButtonClicked)
                         else:
-                            self.Buttons[Index].color=(0,255,0)
+                            self.Buttons[Index].color=(ButtonDefault)
 
     def WinScreen(self,Text):
-        self.End.fill((255,255,255))
+        self.End.fill(Background)
 
         while True:       
                      
@@ -178,6 +200,6 @@ class TicTacToe:
         else:
             text = font.render(str(Text), True, (0,0,0))
 
-        Screen.fill((255,255,255))      
+        Screen.fill(Background)      
         Screen.blit(text, Coordinates)
         
