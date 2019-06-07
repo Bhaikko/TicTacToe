@@ -23,6 +23,9 @@ while True:
             TicTacToeGame.WinScreen(3)
             bGameOver=True
             break
+        elif bOutcome == "Reset":
+            bGameOver=True
+            break
         
     if bGameOver==True:   
         del TicTacToeGame
