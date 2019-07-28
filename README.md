@@ -1,5 +1,4 @@
 # TicTacToe
-CommandLine Based Tic Tac Toe
 
 A GUI based TicTacToe Game written in Pyhton 2.7
 
