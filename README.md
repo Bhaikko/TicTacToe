@@ -25,6 +25,11 @@ To Compile the code, use
 ```
   python main.py
 ```
+For building the game along with pygame library, setup.py is used.
+if you want to build, just simply compile the file using python interpreter
+```
+  python setup.py
+```
 
 ## Screenshots
 ### Menu Screen
