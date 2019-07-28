@@ -42,7 +42,7 @@ if you want to build, just simply compile the file using python interpreter
 ### Gameplay
 <img src="https://github.com/Bhaikko/TicTacToe/blob/master/Screenshots/Gameplay.png"
      style="float: left; margin-right: 10px;" />
-<img src="https://github.com/Bhaikko/TicTacToe/blob/master/Screenshots/WinnerMoment.png"
+<img src="https://github.com/Bhaikko/TicTacToe/blob/master/Screenshots/WinMoment.png"
      style="float: left; margin-right: 10px;" />
 <img src="https://github.com/Bhaikko/TicTacToe/blob/master/Screenshots/WinnerScreen.png"
      style="float: left; margin-right: 10px;" />
